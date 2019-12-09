@@ -61,7 +61,7 @@ In `Terminal 1` run:
 $ docker-machine ssh master docker run -d --rm --name=master_mysql --hostname=master \
   -v $PWD/d0:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mypass \
   -p 3306:3306 \
-  mysql/mysql-server:5.7 \
+  mysql/mysql-server:8.0 \
   --server-id=1 \
   --log-bin='mysql-bin-1.log'
 ```
@@ -69,7 +69,7 @@ In `Terminal 2` run:
 ```
 $ docker-machine ssh slave docker run -d --rm --name=slave_mysql --hostname=slave \
   -v $PWD/d1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mypass \
-  mysql/mysql-server:5.7 \
+  mysql/mysql-server:8.0 \
   --server-id=2
 ```
 In both terminals, we need to wait for the MySQL container to be with status `healthy`.
@@ -88,8 +88,8 @@ $ docker-machine ssh master
 ```
 Finally run:
 ```
-$ docker exec -t master_mysql mysql -uroot -pmypass \
-  -e "CREATE USER 'repl'@'%' IDENTIFIED BY 'slavepass';" \
+$ docker exec -it master_mysql mysql -uroot -pmypass \
+  -e "CREATE USER 'repl'@'%' IDENTIFIED WITH mysql_native_password BY 'slavepass';" \
   -e "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';" \
   -e "SHOW MASTER STATUS;"
 ```
