@@ -1,6 +1,6 @@
-# docker-machine-master-slave-mysql-replication
+# MySQL Replication using containers deployed in different Hosts (VirtualBoxes) using docker-machine
 This project: 
-- creates two virtual box hosts using docker-machine
+- creates two VirtualBox hosts using docker-machine
 - deploys one MySQL container in which of the hosts
 - sets up master ➡ slave replication
 
