@@ -8,6 +8,8 @@ For running the steps below, it's better to open 2 terminals and run the command
 - `Terminal 1`: **MASTER**
 - `Terminal 2`: **SLAVE**
 
+***References***: [Replication with Docker MySQL Images](https://github.com/wagnerjfr/mysql-master-slaves-replication-docker)
+
 ## 1. Creating the hosts master and slave
 In `Terminal 1`, run the command below:
 ```
@@ -107,7 +109,7 @@ MASTER_IP=$(docker-machine ip master)
 echo $MASTER_IP
 ```
 My outuput is:
-```
+```console
 192.168.99.100
 ```
 Then, ssh into the host:
@@ -129,7 +131,7 @@ Finally, to check whether it's ok, run:
 $ docker exec slave_mysql mysql -uroot -pmypass -e "SHOW SLAVE STATUS\G"
 ```
 Output:
-```
+```console
 mysql: [Warning] Using a password on the command line interface can be insecure.
 *************************** 1. row ***************************
                Slave_IO_State: Waiting for master to send event
@@ -146,7 +148,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
             Slave_SQL_Running: Yes
             ....
 ```
-Note that both `Slave_IO_Running: Yes` and `Slave_SQL_Running: Yes` is running.
+Note that both `Slave_IO_Running: Yes` and `Slave_SQL_Running: Yes` are running.
 
 ## 4. Adding some data:
 
@@ -194,7 +196,7 @@ Run the command below to delete the hosts:
 $ docker-machine rm -f master slave
 ```
 Output:
-```
+```console
 About to remove master, slave
 WARNING: This action will delete both local reference and remote instance.
 Successfully removed master
