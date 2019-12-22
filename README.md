@@ -91,7 +91,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +--------------------+----------+--------------+------------------+-------------------+
 ```
 
-In `Terminal 2`,  let's first grab the master host IP:
+In `Terminal 2`,  let's first take the master host IP:
 ```
 MASTER_IP=$(docker-machine ip master)
 echo $MASTER_IP
